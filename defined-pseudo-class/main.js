@@ -1,4 +1,4 @@
-customElements.define('simpl-custom',
+customElements.define('simple-custom',
   class extends HTMLElement {
     constructor() {
       super();
