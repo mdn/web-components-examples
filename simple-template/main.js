@@ -12,3 +12,4 @@ customElements.define('my-paragraph',
 
 let slottedSpan = document.querySelector('my-paragraph span')
 console.log(slottedSpan.assignedSlot);
+console.log(slottedSpan.slot);
