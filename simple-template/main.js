@@ -9,3 +9,6 @@ customElements.define('my-paragraph',
         .appendChild(templateContent.cloneNode(true));
   }
 })
+
+let slottedSpan = document.querySelector('my-paragraph span')
+console.log(slottedSpan.assignedSlot);
