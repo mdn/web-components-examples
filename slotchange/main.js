@@ -6,10 +6,6 @@ customElements.define('summary-display',
       let template = document.getElementById('summary-display-template');
       let templateContent = template.content;
 
-      let style = document.createElement('style');
-
-      let para = this.querySelector('p');
-
       let shadowRoot = this.attachShadow({mode: 'open'});
       shadowRoot.appendChild(templateContent.cloneNode(true));
 
@@ -46,7 +42,7 @@ customElements.define('summary-display',
       let slots = this.shadowRoot.querySelectorAll('slot');
       slots[1].addEventListener('slotchange', function(e) {
         let nodes = slots[1].assignedNodes();
-        console.log('Element in Slot "' + e.target.name + '" changed to "' + nodes[0].outerHTML + '".');
+        console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
       });
   }
 });
