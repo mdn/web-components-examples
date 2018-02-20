@@ -37,9 +37,14 @@
             // creating the inner HTML of the editable list element
             editableListContainer.innerHTML = `
                 <style>
+                    li {
+                        margin: 1rem 0;
+                    }
+
                     .icon {
                         border: none;
                         cursor: pointer;
+                        float: right;
                     }
                 </style>
                 <h3>${title}</h3>
@@ -72,13 +77,19 @@
         addListItem(e) {
             let textInput = this.shadowRoot.querySelector('.add-new-list-item-input');
             if (textInput.value) {
-                this.itemList.innerHTML += `
-                    <li>${textInput.value}
-                        <button class="editable-list-remove-item icon">&#10134;</button>
-                    </li>
-                `;
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                const childrenLength = this.itemList.children.length;
+
+                li.textContent = textInput.value;
+                button.classList.add('editable-list-remove-item', 'icon');
+                button.textContent = '\u2796';
+
+                this.itemList.appendChild(li);
+                this.itemList.children[childrenLength].appendChild(button);
 
                 this.handleRemoveItemListeners([...this.itemList.children]);
+
                 textInput.value = '';
             }
         }
