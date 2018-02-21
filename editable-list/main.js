@@ -25,8 +25,10 @@
             // creating the inner HTML of the editable list element
             editableListContainer.innerHTML = `
                 <style>
-                    li {
-                        margin: 1rem 0;
+                    li, div > div {
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
                     }
 
                     .icon {
@@ -34,19 +36,22 @@
                         border: none;
                         cursor: pointer;
                         float: right;
+                        font-size: 1.8rem;
                     }
                 </style>
                 <h3>${title}</h3>
                 <ul class="item-list">
                     ${listItems.map(item => `
                         <li>${item}
-                            <button class="editable-list-remove-item icon">&#10134;</button>
+                            <button class="editable-list-remove-item icon">&ominus;</button>
                         </li>
                     `).join('')}
                 </ul>
-                <label>${addItemText}</label>
-                <input class="add-new-list-item-input" type="text"></input>
-                <button class="editable-list-add-item icon">&#10133;</button>
+                <div>
+                  <label>${addItemText}</label>
+                  <input class="add-new-list-item-input" type="text"></input>
+                  <button class="editable-list-add-item icon">&oplus;</button>
+                </div>
             `;
 
             // binding methods
