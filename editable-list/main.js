@@ -14,25 +14,13 @@
             // creating a container for the editable-list component
             const editableListContainer = document.createElement('div');
 
-            // gathering data from element attributes
-            const title = this.getAttribute('title') || '';
-            const addItemText = this.getAttribute('add-item-text') || '';
-
-            // list items will be created later
-            const listItems = [];
-
-            // creating an array from the attributes nodelist
-            let attributes = [...this.attributes];
+            // get attribute values from getters
+            const title = this.title;
+            const addItemText = this.addItemText;
+            const listItems = this.items;
 
             // adding a class to our container for the sake of clarity
             editableListContainer.classList.add('editable-list');
-
-            // pushing attributes following the proper naming convention into the listItems array
-            attributes.forEach(attr => {
-                if (attr.name.includes('list-item')) {
-                    listItems.push(attr.value);
-                }
-            });
 
             // creating the inner HTML of the editable list element
             editableListContainer.innerHTML = `
@@ -70,10 +58,6 @@
             shadow.appendChild(editableListContainer);
         }
 
-        handleRemoveItemListeners(arrayOfElements) {
-            arrayOfElements.forEach(element => element.addEventListener('click', this.removeListItem, false));
-        }
-
         // add items to the list
         addListItem(e) {
             let textInput = this.shadowRoot.querySelector('.add-new-list-item-input');
@@ -106,7 +90,31 @@
             addElementButton.addEventListener('click', this.addListItem, false);
         }
 
-        // remove items from the list
+        // gathering data from element attributes
+        get title() {
+            return this.getAttribute('title') || '';
+        }
+
+        get items() {
+            const items = [];
+
+            [...this.attributes].forEach(attr => {
+                if (attr.name.includes('list-item')) {
+                    items.push(attr.value);
+                }
+            });
+
+            return items;
+        }
+
+        get addItemText() {
+            return this.getAttribute('add-item-text') || '';
+        }
+
+        handleRemoveItemListeners(arrayOfElements) {
+            arrayOfElements.forEach(element => element.addEventListener('click', this.removeListItem, false));
+        }
+
         removeListItem(e) {
             e.target.parentNode.remove();
         }
