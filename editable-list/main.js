@@ -42,6 +42,7 @@
                     }
 
                     .icon {
+                        background-color: #fff;
                         border: none;
                         cursor: pointer;
                         float: right;
