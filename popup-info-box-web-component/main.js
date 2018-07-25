@@ -17,7 +17,7 @@ class PopUpInfo extends HTMLElement {
     info.setAttribute('class','info');
 
     // Take attribute content and put it inside the info span
-    var text = this.getAttribute('text');
+    var text = this.getAttribute('data-text');
     info.textContent = text;
 
     // Insert icon
