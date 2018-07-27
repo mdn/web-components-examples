@@ -3,28 +3,28 @@ customElements.define('summary-display',
     constructor() {
       super();
 
-      let template = document.getElementById('summary-display-template');
-      let templateContent = template.content;
+      const template = document.getElementById('summary-display-template');
+      const templateContent = template.content;
 
-      let shadowRoot = this.attachShadow({mode: 'open'});
+      const shadowRoot = this.attachShadow({mode: 'open'});
       shadowRoot.appendChild(templateContent.cloneNode(true));
 
-      let items = this.querySelectorAll('li');
-      let descriptions = this.querySelectorAll('p');
+      const items = Array.from(this.querySelectorAll('li'));
+      const descriptions = Array.from(this.querySelectorAll('p'));
 
-      for(let i = 0; i < items.length; i++) {
-        handleClick(items[i]);
-      }
+      items.forEach(item => {
+        handleClick(item);
+      });
 
       function handleClick(item) {
         item.addEventListener('click', function() {
-          for(let i = 0; i < items.length; i++) {
-            items[i].style.backgroundColor = 'white';
-          }
+          items.forEach(item => {
+            item.style.backgroundColor = 'white';
+          });
 
-          for(let j = 0; j < descriptions.length; j++) {
-            updateDisplay(descriptions[j], item);
-          }
+          descriptions.forEach(description => {
+            updateDisplay(description, item);
+          });
         });
       }
 
@@ -32,17 +32,16 @@ customElements.define('summary-display',
         description.removeAttribute('slot');
 
         if(description.getAttribute('data-name') === item.textContent) {
-          description.setAttribute('slot','choice');
+          description.setAttribute('slot', 'choice');
           item.style.backgroundColor = '#bad0e4';
-        } else {
-
         }
       }
 
-      let slots = this.shadowRoot.querySelectorAll('slot');
+      const slots = this.shadowRoot.querySelectorAll('slot');
       slots[1].addEventListener('slotchange', function(e) {
-        let nodes = slots[1].assignedNodes();
-        console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
+        const nodes = slots[1].assignedNodes();
+        console.log(`Element in Slot "${slots[1].name}" changed to "${nodes[0].outerHTML}".`);
       });
+    }
   }
-});
+);
