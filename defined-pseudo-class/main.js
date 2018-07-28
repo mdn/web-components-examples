@@ -6,8 +6,8 @@ customElements.define('simple-custom',
       const divElem = document.createElement('div');
       divElem.textContent = this.getAttribute('text');
 
-      this.attachShadow({mode: 'open'})
-        .appendChild(divElem);
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(divElem);
     }
   }
 );
