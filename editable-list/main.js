@@ -3,7 +3,6 @@
 (function() {
     class EditableList extends HTMLElement {
         constructor() {
-
             // establish prototype chain
             super();
 
@@ -65,7 +64,8 @@
 
         // add items to the list
         addListItem(e) {
-            let textInput = this.shadowRoot.querySelector('.add-new-list-item-input');
+            const textInput = this.shadowRoot.querySelector('.add-new-list-item-input');
+
             if (textInput.value) {
                 const li = document.createElement('li');
                 const button = document.createElement('button');
@@ -86,8 +86,8 @@
 
         // fires after the element has been attached to the DOM
         connectedCallback() {
-            let removeElementButtons = [...this.shadowRoot.querySelectorAll('.editable-list-remove-item')];
-            let addElementButton = this.shadowRoot.querySelector('.editable-list-add-item');
+            const removeElementButtons = [...this.shadowRoot.querySelectorAll('.editable-list-remove-item')];
+            const addElementButton = this.shadowRoot.querySelector('.editable-list-add-item');
 
             this.itemList = this.shadowRoot.querySelector('.item-list');
 
@@ -117,7 +117,9 @@
         }
 
         handleRemoveItemListeners(arrayOfElements) {
-            arrayOfElements.forEach(element => element.addEventListener('click', this.removeListItem, false));
+            arrayOfElements.forEach(element => {
+                element.addEventListener('click', this.removeListItem, false)
+            });
         }
 
         removeListItem(e) {
