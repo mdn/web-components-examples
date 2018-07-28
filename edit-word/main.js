@@ -2,21 +2,25 @@ customElements.define('person-details',
   class extends HTMLElement {
     constructor() {
       super();
-      let template = document.getElementById('person-template');
-      let templateContent = template.content;
 
-      let shadowRoot = this.attachShadow({mode: 'open'});
+      const template = document.getElementById('person-template');
+      const templateContent = template.content;
 
-      let style = document.createElement('style');
-      style.textContent = 'div { padding: 10px; border: 1px solid gray; width: 200px; margin: 10px; }' +
-                           'h2 { margin: 0 0 10px; }' +
-                           'ul { margin: 0; }' +
-                           'p { margin: 10px 0; }';
+      const shadowRoot = this.attachShadow({mode: 'open'});
+
+      const style = document.createElement('style');
+      style.textContent = `
+        div { padding: 10px; border: 1px solid gray; width: 200px; margin: 10px; }
+        h2 { margin: 0 0 10px; }
+        ul { margin: 0; }
+        p { margin: 10px 0; }
+      `;
 
       shadowRoot.appendChild(style);
       shadowRoot.appendChild(templateContent.cloneNode(true));
+    }
   }
-});
+);
 
 customElements.define('edit-word',
   class extends HTMLElement {
@@ -24,11 +28,11 @@ customElements.define('edit-word',
       super();
 
       const shadowRoot = this.attachShadow({mode: 'open'});
-      let form = document.createElement('form');
-      let input = document.createElement('input');
-      let span = document.createElement('span');
+      const form = document.createElement('form');
+      const input = document.createElement('input');
+      const span = document.createElement('span');
 
-      let style = document.createElement('style');
+      const style = document.createElement('style');
       style.textContent = 'span { background-color: #eef; padding: 0 2px }';
 
       shadowRoot.appendChild(style);
@@ -46,13 +50,13 @@ customElements.define('edit-word',
       input.setAttribute('required', 'required');
       this.style.display = 'inline-block';
 
-      this.addEventListener('click', function() {
+      this.addEventListener('click', () => {
         span.style.display = 'none';
         form.style.display = 'inline-block';
         input.focus();
       });
 
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', e => {
         e.preventDefault();
       });
       input.addEventListener('change', updateDisplay);
@@ -64,5 +68,6 @@ customElements.define('edit-word',
         input.value = '';
         input.style.width = span.clientWidth + 'px';
       }
+    }
   }
-});
+);
