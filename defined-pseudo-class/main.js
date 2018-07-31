@@ -3,10 +3,11 @@ customElements.define('simple-custom',
     constructor() {
       super();
 
-      let divElem = document.createElement('div');
+      const divElem = document.createElement('div');
       divElem.textContent = this.getAttribute('text');
 
-      let shadowRoot = this.attachShadow({mode: 'open'})
-        .appendChild(divElem);
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(divElem);
+    }
   }
-})
+);
