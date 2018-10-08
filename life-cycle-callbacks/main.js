@@ -3,7 +3,7 @@ class Square extends HTMLElement {
   // Specify observed attributes so that
   // attributeChangedCallback will work
   static get observedAttributes() {
-    return ['w', 'l'];
+    return ['c', 'l'];
   }
 
   constructor() {
