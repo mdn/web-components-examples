@@ -40,6 +40,7 @@ customElements.define('edit-word',
       shadowRoot.appendChild(span);
 
       span.textContent = this.textContent;
+      input.value = this.textContent;
 
       form.appendChild(input);
       form.style.display = 'none';
@@ -54,18 +55,20 @@ customElements.define('edit-word',
         span.style.display = 'none';
         form.style.display = 'inline-block';
         input.focus();
+        input.setSelectionRange(0, input.value.length)
       });
 
       form.addEventListener('submit', e => {
+        updateDisplay();
         e.preventDefault();
       });
-      input.addEventListener('change', updateDisplay);
+
+      input.addEventListener('blur', updateDisplay);
 
       function updateDisplay() {
         span.style.display = 'inline-block';
         form.style.display = 'none';
         span.textContent = input.value;
-        input.value = '';
         input.style.width = span.clientWidth + 'px';
       }
     }
