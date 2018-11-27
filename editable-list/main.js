@@ -78,7 +78,7 @@
         this.itemList.appendChild(li);
         this.itemList.children[childrenLength].appendChild(button);
 
-        this.handleRemoveItemListeners([...this.itemList.children]);
+        this.handleRemoveItemListeners([button]);
 
         textInput.value = '';
       }
