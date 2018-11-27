@@ -122,7 +122,6 @@
     }
 
     removeListItem(e) {
-      console.log('e.target',e.target);
       e.target.parentNode.remove();
     }
   }
