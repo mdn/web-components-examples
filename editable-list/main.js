@@ -77,8 +77,7 @@
 
         this.itemList.appendChild(li);
         this.itemList.children[childrenLength].appendChild(button);
-
-        this.handleRemoveItemListeners([...this.itemList.children]);
+        this.handleRemoveItemListeners([button]);
 
         textInput.value = '';
       }
@@ -123,6 +122,7 @@
     }
 
     removeListItem(e) {
+      console.log('e.target',e.target);
       e.target.parentNode.remove();
     }
   }
