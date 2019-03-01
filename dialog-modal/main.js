@@ -34,7 +34,6 @@ class DialogModal extends HTMLElement {
 
       // Open modal button click event
       trigger.addEventListener('click', () => {
-        // change style for dialog-modal__modal to display: block
         modalWrapper.style.display = 'block'
       })
 
