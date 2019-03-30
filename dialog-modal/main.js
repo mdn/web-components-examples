@@ -1,103 +1,60 @@
-class DialogModal extends HTMLElement {
-    constructor(){
-      // Establish prototype chain
-      super()
+class DialogModalButton extends HTMLButtonElement {
+  constructor() {
+    super()
+    const toggleModal = new Event('toggle-modal', {
+      bubbles: true
+    })
 
-      // Create a shadow root
-      const shadow = this.attachShadow({ mode: 'open' })
-
-      // Create elements
-      const wrapper = document.createElement('div')
-      const trigger = document.createElement('button', {type: 'button'})
-      const modalWrapper = document.createElement('div')
-      const modalContentWrapper = document.createElement('div')
-      const closeButton = document.createElement('div')
-
-      // Add classes to elements for styling
-      wrapper.setAttribute('class', 'dialog-modal')
-      trigger.setAttribute('class', 'dialog-modal__trigger')
-      modalWrapper.setAttribute('class', 'dialog-modal__modal')
-      modalContentWrapper.setAttribute('class', 'dialog-modal__content')
-      closeButton.setAttribute('class', 'dialog-modal__close')
-
-      // Setup modal launch button text
-      const buttonText = this.getAttribute('buttonText')
-      trigger.textContent = buttonText
-
-      // Setup close button text
-      const closeButtonText = this.getAttribute('closeButtonText')
-      closeButton.innerText = closeButtonText
-
-      // Add dialog content to modal
-      const modalContent = this.firstElementChild.innerHTML
-      modalContentWrapper.innerHTML = modalContent
-
-      // Open modal button click event
-      trigger.addEventListener('click', () => {
-        modalWrapper.style.display = 'block'
-      })
-
-      // Close modal button click event
-      closeButton.addEventListener('click', () => {
-        modalWrapper.style.display = 'none'
-      })
-
-      // Some basic modal styling
-      const style = document.createElement('style');
-      style.textContent = `
-        .dialog-modal__trigger {
-          padding: 10px 20px;
-          background: white;
-          border: 1px solid #ccc;
-        }
-  
-        .dialog-modal__modal {
-          display: none;
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgb(0,0,0);
-          background-color: rgba(0,0,0,0.4);
-        }
-  
-        .dialog-modal__content {
-          background-color: #fefefe;
-          margin: 5% auto;
-          padding: 20px;
-          border: 1px solid #888;
-          border-radius: 5px;
-          max-width: 600px;
-          box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12);
-        }
-  
-        .dialog-modal__close {
-          color: #aaa;
-          text-align: right;
-          font-size: 18px;
-          font-weight: bold;
-        }
-  
-        .dialog-modal__close:hover,
-        .dialog-modal__close:focus {
-          color: black;
-          text-decoration: none;
-          cursor: pointer;
-        }
-      `
-
-      // Attach the created elements to the shadow dom
-      shadow.appendChild(style)
-      shadow.appendChild(wrapper)
-      wrapper.appendChild(trigger)
-      wrapper.appendChild(modalWrapper)
-      modalWrapper.appendChild(modalContentWrapper)
-      modalContentWrapper.appendChild(closeButton)
-    }
+    this.addEventListener('click', (e) => {
+      e.target.dispatchEvent(toggleModal)
+    })
   }
+}
 
-  // Register the custom element with the browser
-  customElements.define('dialog-modal', DialogModal)
+customElements.define('dialog-modal-button', DialogModalButton, { extends: 'button' })
+
+class DialogModal extends HTMLElement {
+  constructor() {
+    super();
+    const shadowRoot = this.attachShadow({mode: 'open'})
+    const template = document.getElementById('dialog-modal').content
+    const dialogModalToggle = document.getElementById('dialog-modal-toggle')
+    const closeButton = document.createElement('span')
+    closeButton.setAttribute('class', 'dialog-modal-close')
+
+    // Base modal styling. Apply custom style in the template.
+    const style = document.createElement('style')
+    style.textContent = `
+      .dialog-modal-wrap {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+      .dialog-modal-wrap--active {
+        display: block;
+      }`
+
+    dialogModalToggle.addEventListener('toggle-modal', (e) => {
+      const closeLabel = e.target.dataset.closeLabel
+      closeButton.innerText = closeLabel
+      shadowRoot.querySelector('.dialog-modal-wrap')
+        .classList.add('dialog-modal-wrap--active')
+    })
+
+    closeButton.addEventListener('click', () => {
+      shadowRoot.querySelector('.dialog-modal-wrap')
+        .classList.remove('dialog-modal-wrap--active')
+    })
+
+    shadowRoot.appendChild(template.cloneNode(true))
+    shadowRoot.appendChild(style)
+    shadowRoot.querySelector('.dialog-modal').appendChild(closeButton)
+  }
+}
+
+customElements.define('dialog-modal', DialogModal)
