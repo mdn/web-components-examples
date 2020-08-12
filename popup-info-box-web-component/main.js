@@ -4,8 +4,8 @@ class PopUpInfo extends HTMLElement {
     // Always call super first in constructor
     super();
 
-    // Create a shadow root
-    const shadow = this.attachShadow({mode: 'open'});
+    // Create a shadow root, sets AND returns this.shadowRoot
+    this.attachShadow({mode: 'open'});
 
     // Create spans
     const wrapper = document.createElement('span');
@@ -69,11 +69,9 @@ class PopUpInfo extends HTMLElement {
     `;
 
     // Attach the created elements to the shadow dom
-    shadow.appendChild(style);
+    this.shadowRoot.append(style,wrapper);
     console.log(style.isConnected);
-    shadow.appendChild(wrapper);
-    wrapper.appendChild(icon);
-    wrapper.appendChild(info);
+    wrapper.append(icon,info);
   }
 }
 
