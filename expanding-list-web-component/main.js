@@ -3,7 +3,7 @@ class ExpandingList extends HTMLUListElement {
   constructor() {
     // Always call super first in constructor
     // Return value from super() is a reference to this element
-    self = super();
+    const self = super();
 
     // Get ul and li elements that are a child of this custom ul element
     // li elements can be containers if they have uls within them
