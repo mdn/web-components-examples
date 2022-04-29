@@ -16,7 +16,7 @@ class ExpandingList extends HTMLUListElement {
       ul.style.display = 'none';
     });
 
-        // Look through each li element in the ul
+    // Look through each li element in the ul
     lis.forEach(li => {
       // If this li has a ul as a child, decorate it and add a click handler
       if (li.querySelectorAll('ul').length > 0) {
