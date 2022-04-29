@@ -1,6 +1,8 @@
 # web-components-examples
 A series of web components examples, related to the MDN web components documentation at https://developer.mozilla.org/en-US/docs/Web/Web_Components.
 
+> Please refer to our [contribution guidelines](https://github.com/mdn/web-components-examples/blob/main/CONTRIBUTING.md) before contributing.
+
 The following examples are available:
 
 * [composed-composed-path](composed-composed-path). A very simple example that shows the behavior of the <code>Event</code> object <code>composed</code> and <code>composedPath</code> properties. [See composed-composed-path live](https://mdn.github.io/web-components-examples/composed-composed-path/).
