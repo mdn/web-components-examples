@@ -36,9 +36,9 @@ class ExpandingList extends HTMLUListElement {
         // Add click handler to this span
         newSpan.onclick = self.showul;
         
-        // Add the span and remove the bare text node from the li
-        childText.parentNode.insertBefore(newSpan, childText);
-        childText.parentNode.removeChild(childText);
+        // Remove the bare text and add the span node from the li
+        li.removeChild(childText);
+        li.prepend(newSpan);
       }
     });
   }
