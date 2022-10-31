@@ -70,9 +70,9 @@ class PopUpInfo extends HTMLElement {
     `;
 
     // Attach the created elements to the shadow dom
-    this.shadow.appendChild(style);
+    this.shadowRoot.appendChild(style);
     console.log(style.isConnected);
-    this.shadow.appendChild(wrapper);
+    this.shadowRoot.appendChild(wrapper);
     wrapper.appendChild(icon);
     wrapper.appendChild(info);
   }
