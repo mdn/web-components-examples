@@ -1,0 +1,102 @@
+[
+  {
+    "name": "good first issue",
+    "color": "028c46",
+    "description": "A good issue for newcomers to get started with."
+  },
+  {
+    "name": "help wanted",
+    "color": "028c46",
+    "description": "If you know something about this, we would love your help!"
+  },
+  {
+    "name": "needs info",
+    "color": "028c46",
+    "description": "This needs more information to review or act on."
+  },
+  {
+    "name": "needs triage",
+    "color": "028c46",
+    "description": "Triage needed by staff and/or partners. Automatically applied when an issue is opened."
+  },
+  {
+    "name": "expert help needed",
+    "color": "028c46",
+    "description": "This needs more information from a subject matter expert (SME)."
+  },
+  {
+    "name": "idle",
+    "color": "028c46",
+    "description": "Issues and pull requests with no activity for three months."
+  },
+  {
+    "name": "on hold",
+    "color": "028c46",
+    "description": "Waiting on something else before this can be moved forward."
+  },
+  {
+    "name": "for later",
+    "color": "028c46",
+    "description": "Not planned at this time."
+  },
+  {
+    "name": "needs content update",
+    "color": "028c46",
+    "description": "Needs update to the content to support this change."
+  },
+  {
+    "name": "chore",
+    "color": "028c46",
+    "description": "A routine task."
+  },
+  {
+    "name": "enhancement",
+    "color": "028c46",
+    "description": "Improves an existing feature."
+  },
+  {
+    "name": "bug",
+    "color": "c05964",
+    "description": "Indicates an unexpected problem or unintended behavior."
+  },
+  {
+    "name": "wontfix",
+    "color": "c05964",
+    "description": "Deemed to be outside the scope of the project or would require significant time and resources to fix."
+  },
+  {
+    "name": "effort: small",
+    "color": "866dc1",
+    "description": "Task is a small effort."
+  },
+  {
+    "name": "effort: medium",
+    "color": "866dc1",
+    "description": "Task is a medium effort."
+  },
+  {
+    "name": "effort: large",
+    "color": "866dc1",
+    "description": "Task is large effort."
+  },
+  {
+    "name": "p0",
+    "color": "6e8bc1",
+    "description": "Urgent. We will address this as soon as possible."
+  },
+  {
+    "name": "p1",
+    "color": "6e8bc1",
+    "description": "We will address this soon and will provide capacity from our team for it in the next few releases."
+  },
+  {
+    "name": "p2",
+    "color": "6e8bc1",
+    "description": "We want to address this but may have other higher priority items."
+  },
+  {
+    "name": "p3",
+    "color": "6e8bc1",
+    "description": "We don't have visibility when this will be addressed."
+  }
+]
