@@ -1,0 +1,9 @@
+name: set-default-labels
+on: [workflow_dispatch]
+
+jobs:
+  set-default-labels:
+    uses: mdn/workflows/.github/workflows/set-default-labels.yml@main
+    with:
+      target-repo: "mdn/web-components-examples"
+      should-delete-labels: true
