@@ -22,6 +22,7 @@ img {
   width: 1.2rem;
 }
 
-.icon:hover + .info, .icon:focus + .info {
+.icon:hover + .info,
+.icon:focus + .info {
   opacity: 1;
 }

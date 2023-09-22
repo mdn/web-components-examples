@@ -5,39 +5,39 @@ class PopUpInfo extends HTMLElement {
     super();
 
     // Create a shadow root
-    const shadow = this.attachShadow({mode: 'open'});
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create spans
-    const wrapper = document.createElement('span');
-    wrapper.setAttribute('class', 'wrapper');
+    const wrapper = document.createElement("span");
+    wrapper.setAttribute("class", "wrapper");
 
-    const icon = document.createElement('span');
-    icon.setAttribute('class', 'icon');
-    icon.setAttribute('tabindex', 0);
+    const icon = document.createElement("span");
+    icon.setAttribute("class", "icon");
+    icon.setAttribute("tabindex", 0);
 
-    const info = document.createElement('span');
-    info.setAttribute('class', 'info');
+    const info = document.createElement("span");
+    info.setAttribute("class", "info");
 
     // Take attribute content and put it inside the info span
-    const text = this.getAttribute('data-text');
+    const text = this.getAttribute("data-text");
     info.textContent = text;
 
     // Insert icon
     let imgUrl;
-    if(this.hasAttribute('img')) {
-      imgUrl = this.getAttribute('img');
+    if (this.hasAttribute("img")) {
+      imgUrl = this.getAttribute("img");
     } else {
-      imgUrl = 'img/default.png';
+      imgUrl = "img/default.png";
     }
 
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = imgUrl;
     icon.appendChild(img);
 
     // Apply external styles to the shadow dom
-    const linkElem = document.createElement('link');
-    linkElem.setAttribute('rel', 'stylesheet');
-    linkElem.setAttribute('href', 'style.css');
+    const linkElem = document.createElement("link");
+    linkElem.setAttribute("rel", "stylesheet");
+    linkElem.setAttribute("href", "style.css");
 
     // Attach the created elements to the shadow dom
     shadow.appendChild(linkElem);
@@ -48,4 +48,4 @@ class PopUpInfo extends HTMLElement {
 }
 
 // Define the new element
-customElements.define('popup-info', PopUpInfo);
+customElements.define("popup-info", PopUpInfo);
