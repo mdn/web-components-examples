@@ -3,7 +3,9 @@ class PopUpInfo extends HTMLElement {
   constructor() {
     // Always call super first in constructor
     super();
+  }
 
+  connectedCallback() {
     // Create a shadow root
     const shadow = this.attachShadow({ mode: "open" });
 

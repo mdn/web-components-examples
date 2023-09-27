@@ -3,7 +3,7 @@ class Square extends HTMLElement {
   // Specify observed attributes so that
   // attributeChangedCallback will work
   static get observedAttributes() {
-    return ["c", "l"];
+    return ["color", "size"];
   }
 
   constructor() {
@@ -43,9 +43,9 @@ function updateStyle(elem) {
   const shadow = elem.shadowRoot;
   shadow.querySelector("style").textContent = `
     div {
-      width: ${elem.getAttribute("l")}px;
-      height: ${elem.getAttribute("l")}px;
-      background-color: ${elem.getAttribute("c")};
+      width: ${elem.getAttribute("size")}px;
+      height: ${elem.getAttribute("size")}px;
+      background-color: ${elem.getAttribute("color")};
     }
   `;
 }
@@ -65,8 +65,8 @@ function random(min, max) {
 add.onclick = function () {
   // Create a custom square element
   square = document.createElement("custom-square");
-  square.setAttribute("l", "100");
-  square.setAttribute("c", "red");
+  square.setAttribute("size", "100");
+  square.setAttribute("color", "red");
   document.body.appendChild(square);
 
   update.disabled = false;
@@ -76,9 +76,9 @@ add.onclick = function () {
 
 update.onclick = function () {
   // Randomly update square's attributes
-  square.setAttribute("l", random(50, 200));
+  square.setAttribute("size", random(50, 200));
   square.setAttribute(
-    "c",
+    "color",
     `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
   );
 };
