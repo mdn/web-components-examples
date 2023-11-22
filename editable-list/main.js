@@ -48,7 +48,7 @@
         </ul>
         <div>
           <label>${addItemText}</label>
-          <input class="add-new-list-item-input" type="text"></input>
+          <input class="add-new-list-item-input" type="text">
           <button class="editable-list-add-item icon">&oplus;</button>
         </div>
       `;
