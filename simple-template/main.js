@@ -3,7 +3,7 @@ customElements.define('my-paragraph',
     constructor() {
       super();
 
-      const template = document.getElementById('custom-my-paragraph');
+      const template = document.getElementById('custom-paragraph');
       const templateContent = template.content;
 
       this.attachShadow({ mode: 'open' }).appendChild(
