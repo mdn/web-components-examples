@@ -8,7 +8,7 @@
 <body>
   <h1>Simple template</h1>
 
-  <template id="my-paragraph">
+  <template id="custom-paragraph">
     <style>
       p {
         color: white;
@@ -16,7 +16,9 @@
         padding: 5px;
       }
     </style>
-    <p><slot name="my-text">My default text</slot></p>
+    <p>
+      <slot name="my-text">My default text</slot>
+    </p>
   </template>
 
   <my-paragraph>

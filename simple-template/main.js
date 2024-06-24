@@ -3,10 +3,10 @@ customElements.define('my-paragraph',
     constructor() {
       super();
 
-      const template = document.getElementById('my-paragraph');
+      const template = document.getElementById('custom-paragraph');
       const templateContent = template.content;
 
-      this.attachShadow({mode: 'open'}).appendChild(
+      this.attachShadow({ mode: 'open' }).appendChild(
         templateContent.cloneNode(true)
       );
     }
