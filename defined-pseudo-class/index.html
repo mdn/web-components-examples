@@ -3,35 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>:defined demo</title>
-    <script src="main.js" defer></script>
+    <script src="main.js"></script>
     <style>
       p {
         background: yellow;
-      }
-
-      simple-custom {
-        background: cyan;
       }
 
       :defined {
         font-style: italic;
       }
 
-      simple-custom:not(:defined) {
-        display: none;
+      simple-custom {
+        text-transform: uppercase;
+        background: cyan;
       }
 
-      simple-custom:defined {
-        display: block;
+      simple-custom:not(:defined) {
+        display: none;
       }
     </style>
   </head>
   <body>
     <h1><code>:defined</code> demo</h1>
 
-    <simple-custom text="Custom element example text"></simple-custom>
+    <p>The <code>&lt;simple-custom&gt;</code> element type is <simple-custom>NOT</simple-custom> undefined.</p>
 
-    <p>Standard paragraph example text</p>
+    <p>Click the button below to make <code>&lt;simple-custom&gt;</code> a custom element.</p>
 
+    <button id="button1" onclick="defineSimpleCustom()">Define <code>&lt;simple-custom&gt;</code></button>
   </body>
 </html>

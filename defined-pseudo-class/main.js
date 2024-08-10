@@ -1,13 +1,10 @@
-customElements.define('simple-custom',
-  class extends HTMLElement {
-    constructor() {
-      super();
-
-      const divElem = document.createElement('div');
-      divElem.textContent = this.getAttribute('text');
-
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.appendChild(divElem);
+function defineSimpleCustom() {
+  customElements.define("simple-custom",
+    class extends HTMLElement {
+      constructor() {
+        super();
+      }
     }
-  }
-);
+  );
+  document.getElementById("button1").remove();
+}
