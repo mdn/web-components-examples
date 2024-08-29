@@ -1,0 +1,36 @@
+document.querySelectorAll('.leftpanel li');
+        navigationItems.forEach(item => {
+            const link = item.querySelector('a');
+            const linkHref = link.getAttribute('href');
+            const currentUrl = window.location.pathname;
+
+            if (currentUrl.endsWith(linkHref)) {
+                item.classList.add('active'); // Add 'active' class to the <li> element
+            }
+
+            item.addEventListener('click', function(event) {
+                event.preventDefault();
+                if(currentUrl.includes("subpage")){
+                    const newHref = "../"+linkHref;
+                     // Navigate to the new HTML page from one of the chat/snap subpages
+                    window.location.href = newHref;
+                }else{
+                    // Navigate to the new HTML page
+                    window.location.href = linkHref;
+                }
+            });
+        });
+
+
+
+        // Scroll to the active navigation item on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const activeLink = document.querySelector('.leftpanel li.active');
+            if (activeLink) {
+                const linkRect = activeLink.getBoundingClientRect();
+                if (linkRect.top < 0 || linkRect.bottom > window.innerHeight) {
+                    activeLink.scrollIntoView({ behavior: 'auto' });
+                }
+            }
+        });
+    </script></html>
