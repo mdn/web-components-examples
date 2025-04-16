@@ -1,37 +1,76 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>:defined demo</title>
-    <script src="main.js" defer></script>
     <style>
-      p {
-        background: yellow;
-      }
-
-      simple-custom {
-        background: cyan;
-      }
-
-      :defined {
-        font-style: italic;
-      }
-
-      simple-custom:not(:defined) {
-        display: none;
-      }
-
-      simple-custom:defined {
+      custom-element {
         display: block;
+        border: 5px dashed grey;
+        border-radius: 1rem;
+        height: 100px;
+        width: 400px;
+        padding: 1rem;
+        position: relative;
+        user-select: none;
+      }
+
+      code {
+        background: #ccc;
+      }
+
+      #btn {
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+
+      custom-element:not(:defined) {
+        border-color: grey;
+        color: grey;
+      }
+
+      custom-element:defined {
+        background-color: wheat;
+        border-color: black;
+        color: black;
+      }
+
+      /* show loading message */
+      custom-element:not(:defined)::before {
+        content: "Loading...";
+        position: absolute;
+        inset: 0 0 0 0;
+        align-content: center;
+        text-align: center;
+        font-size: 2rem;
+        background-color: white;
+        border-radius: 1rem;
+      }
+
+      /* remove the loading message */
+      custom-element:defined::before {
+        content: "";
       }
     </style>
   </head>
   <body>
-    <h1><code>:defined</code> demo</h1>
 
-    <simple-custom text="Custom element example text"></simple-custom>
+    <custom-element>
+      <p>
+        Loaded content: Lorem ipsum tel sed tellus eiusmod tellus. Aenean.
+        Semper dolor sit nisi. Elit porttitor nisi sit vivamus.
+      </p>
+    </custom-element>
+    <button id="btn">define the <code>&lt;custom-element&gt;</code></button>
 
-    <p>Standard paragraph example text</p>
+    <script>
+      const btn = document.querySelector("#btn");
+
+      btn.addEventListener("click", () => {
+        customElements.define("custom-element", class extends HTMLElement {});
+        btn.remove();
+      });
+    </script>
 
   </body>
 </html>
