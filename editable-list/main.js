@@ -22,36 +22,64 @@
       editableListContainer.classList.add('editable-list');
 
       // creating the inner HTML of the editable list element
-      editableListContainer.innerHTML = `
-        <style>
-          li, div > div {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          }
+      editableListContainer.replaceChildren(); // clear safely
 
-          .icon {
-            background-color: #fff;
-            border: none;
-            cursor: pointer;
-            float: right;
-            font-size: 1.8rem;
-          }
-        </style>
-        <h3>${title}</h3>
-        <ul class="item-list">
-          ${listItems.map(item => `
-            <li>${item}
-              <button class="editable-list-remove-item icon">&ominus;</button>
-            </li>
-          `).join('')}
-        </ul>
-        <div>
-          <label>${addItemText}</label>
-          <input class="add-new-list-item-input" type="text">
-          <button class="editable-list-add-item icon">&oplus;</button>
-        </div>
-      `;
+      // <h3>
+      const heading = document.createElement('h3');
+      heading.textContent = title;
+
+      // <ul>
+      const ul = document.createElement('ul');
+      ul.className = 'item-list';
+
+      // list items
+      listItems.forEach(item => {
+        const li = document.createElement('li');
+
+        const text = document.createTextNode(item);
+
+        const btn = document.createElement('button');
+        btn.className = 'editable-list-remove-item icon';
+        btn.textContent = String.fromCharCode(0x2296);
+
+        li.append(text, btn);
+        ul.appendChild(li);
+      });
+
+      // <div> (input section)
+      const div = document.createElement('div');
+
+      const label = document.createElement('label');
+      label.textContent = addItemText;
+
+      const input = document.createElement('input');
+      input.className = 'add-new-list-item-input';
+      input.type = 'text';
+
+      const addBtn = document.createElement('button');
+      addBtn.className = 'editable-list-add-item icon';
+      addBtn.textContent = String.fromCharCode(0x2295);
+
+      div.append(label, input, addBtn);
+
+      const style = document.createElement("style");
+      style.textContent = `li,
+                          div>div {
+                              display: flex;
+                              align-items: center;
+                              justify-content: space-between;
+                          }
+
+                          .icon {
+                              background-color: #fff;
+                              border: none;
+                              cursor: pointer;
+                              float: right;
+                              font-size: 1.8rem;
+                          }`;
+
+      // append everything
+      editableListContainer.append(heading, ul, div,style);
 
       // binding methods
       this.addListItem = this.addListItem.bind(this);
@@ -73,7 +101,7 @@
 
         li.textContent = textInput.value;
         button.classList.add('editable-list-remove-item', 'icon');
-        button.innerHTML = '&ominus;';
+        button.textContent = String.fromCharCode(0x2296);
 
         this.itemList.appendChild(li);
         this.itemList.children[childrenLength].appendChild(button);
